@@ -5,13 +5,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootApplication
 @RestController
@@ -23,6 +27,34 @@ public class Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+//    @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
+    @PostMapping(value= "/login")
+    public ResponseEntity<Object> login(@RequestParam String username, @RequestParam String password)
+    {
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand("employee.getId()")
+                .toUri();
+
+        System.out.println("UserName: " + username);
+        System.out.println("Password: " + password);
+        System.out.println(location.toString());
+
+        if ("space".equalsIgnoreCase(username )) {
+            throw new UserNotfoundException();
+        }
+//        return ResponseEntity.created(location).build();
+        return ResponseEntity.ok().body("The quick brown fox jumps over the lazy dog");
+    }
+
+    @RequestMapping(
+            value = "/save", method = { RequestMethod.PUT, RequestMethod.POST }
+    )
+    @ResponseBody
+    public String putAndPostFoos() {
+        return "Advanced - PUT and POST within single method";
     }
 
     @RequestMapping(value="/{firstName}/{lastName}",method = RequestMethod.GET)
