@@ -40,6 +40,12 @@ public class Application {
         System.out.println("\nfindById(1L)");
 //        repository.findById(1l).ifPresent(x -> System.out.println(x));
 
+        try {
+            Thread.sleep(9000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         System.out.println("\nfindByName('Node')");
         repository.findByName("Node").forEach(x -> System.out.println(x));
 
