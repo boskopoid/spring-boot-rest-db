@@ -91,6 +91,7 @@ public class Application {
         elements.add("Element1");
         elements.add("Element2");
         elements.add("message");
+        elements.add("teamcity");
         elements.add(firstName);
         elements.add(lastName);
         ObjectMapper objectMapper = new ObjectMapper();
