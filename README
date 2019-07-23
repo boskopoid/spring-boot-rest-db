@@ -1,0 +1,2 @@
+To run kabbie go in a docker container
+sudo docker run -d --name kabbie-go -p 9091:9091 boskopoid/kabbie-go
