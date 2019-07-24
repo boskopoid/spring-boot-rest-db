@@ -30,6 +30,19 @@ public class Application {
     }
 
     @ResponseBody
+    @PutMapping("/try")
+    public Country tryPut(@RequestBody Country body )
+    {
+        System.out.println("I am in PUT Jason: City" + body.getCity());
+        System.out.println("I am in PUT Jason: Country" + body.getCountry());
+        Country ctr = new Country();
+        ctr.setCity("Country " + body.getCountry());
+        ctr.setCountry("City: " + body.getCity());
+        return ctr;
+    }
+
+
+    @ResponseBody
     @PutMapping("/{planet}")
     public Country updatePut(@PathVariable("planet") String planet, @RequestParam Map<String, String> body )
     {
