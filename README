@@ -1,8 +1,13 @@
 Make your postgresql listen to an external ip address:
-https://gist.github.com/MauricioMoraes/87d76577babd4e084cba70f63c04b07d
+https://gist.github.com/MauricioMoraes/87d76577babd4e084cba70f63c04b07d <-- may not need this if you use --network=host
 
-To run kabbie go in a docker container
+Useful Docker commands:
+sudo docker container ls -a
+sudo docker container rm <CONTAINER ID>
+sudo docker logs kabbie-go
+
+To run kabbie go in a docker container:
 1) cd /home/david/Dev/spring-boot-rest-db
 2) mvn clean package
 3) sudo docker build -t boskopoid/kabbie-go .
-4) sudo docker run -d --name kabbie-go -p 9091:9091 boskopoid/kabbie-go
+4) sudo docker run -d --name kabbie-go --network=host -p 9091:9091 boskopoid/kabbie-go
