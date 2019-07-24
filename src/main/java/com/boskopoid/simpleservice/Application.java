@@ -30,12 +30,23 @@ public class Application {
     }
 
     @ResponseBody
+    @PutMapping("/{planet}")
+    public Country updatePut(@PathVariable("planet") String planet, @RequestParam Map<String, String> body )
+    {
+        System.out.println("I am in PUT " + planet + ": " + body.toString());
+        Country ctr = new Country();
+        ctr.setCity("Tokyo");
+        ctr.setCountry("Japan");
+        return ctr;
+    }
+
+    @ResponseBody
     @PostMapping("/{planet}")
 //    @RequestMapping(path="/{planet}", method = RequestMethod.POST, consumes = { "multipart/form-data" })
 //    public Country updatePost(@PathVariable("planet") String planet, @RequestBody Country body)
     public String updatePost(@PathVariable("planet") String planet, @RequestParam Map<String, String> body )
     {
-        System.out.println("I am in PUT " + planet + ": " + body.toString());
+        System.out.println("I am in POST " + planet + ": " + body.toString());
 //        return body;
         return "POST Testng only " + body.toString();
     }
