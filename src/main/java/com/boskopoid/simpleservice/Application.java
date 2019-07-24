@@ -29,6 +29,17 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
+    @ResponseBody
+    @PostMapping("/{planet}")
+//    @RequestMapping(path="/{planet}", method = RequestMethod.POST, consumes = { "multipart/form-data" })
+//    public Country updatePost(@PathVariable("planet") String planet, @RequestBody Country body)
+    public String updatePost(@PathVariable("planet") String planet, @RequestParam Map<String, String> body )
+    {
+        System.out.println("I am in PUT " + planet + ": " + body.toString());
+//        return body;
+        return "POST Testng only " + body.toString();
+    }
+
 //    @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
     @PostMapping(value= "/login")
     public ResponseEntity<Object> login(@RequestParam String username, @RequestParam String password)
@@ -49,12 +60,11 @@ public class Application {
         return ResponseEntity.ok().body("The quick brown fox jumps over the lazy dog");
     }
 
-    @RequestMapping(
-            value = "/save", method = { RequestMethod.PUT, RequestMethod.POST }
-    )
+    @RequestMapping(value = "/save", method = { RequestMethod.PUT, RequestMethod.POST, RequestMethod.GET })
     @ResponseBody
     public String putAndPostFoos() {
-        return "Advanced - PUT and POST within single method";
+        System.out.println("I am in saved...");
+        return "Advanced - PUT and POOST within single method";
     }
 
     @RequestMapping(value="/{firstName}/{lastName}",method = RequestMethod.GET)
