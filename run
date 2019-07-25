@@ -1,0 +1,5 @@
+curl -i \
+-H "Accept: application/json" \
+-H "Content-Type:application/json" \
+-X PUT --data \
+  '{"city": "curlcity", "country": "curlcountry"}' "http://localhost:9091/hello/try"
